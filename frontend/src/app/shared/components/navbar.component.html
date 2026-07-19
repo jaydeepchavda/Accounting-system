@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">📊 Accounting System</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/dashboard']">Dashboard</a>
+        </li>
+        <li class="nav-item dropdown" *ngIf="currentUser$ | async as user">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+            Accounting
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" [routerLink]="['/journals']">Journal Entries</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/ledger']">Ledger</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/trial-balance']">Trial Balance</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/budgets']">Budgeting</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/workflows']">Workflows</a></li>
+          </ul>
+        </li>
+        <li class="nav-item" *ngIf="currentUser$ | async as user">
+          <span class="nav-link">{{ user.name }}</span>
+        </li>
+        <li class="nav-item" *ngIf="currentUser$ | async">
+          <button class="btn btn-outline-danger btn-sm" (click)="logout()">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
