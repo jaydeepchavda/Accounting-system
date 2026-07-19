@@ -1,0 +1,57 @@
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+  <div class="card" style="width: 100%; max-width: 400px;">
+    <div class="card-body">
+      <h2 class="card-title text-center mb-4">📊 Accounting System</h2>
+      <h5 class="card-subtitle text-center mb-4 text-muted">Login</h5>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            formControlName="email"
+            placeholder="admin@example.com"
+            [class.is-invalid]="email?.invalid && (email?.dirty || email?.touched)"
+          />
+          <div class="invalid-feedback d-block" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+            Please enter a valid email
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            formControlName="password"
+            placeholder="Enter password"
+            [class.is-invalid]="password?.invalid && (password?.dirty || password?.touched)"
+          />
+          <div class="invalid-feedback d-block" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+            Password is required
+          </div>
+        </div>
+
+        <div *ngIf="error" class="alert alert-danger" role="alert">
+          {{ error }}
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary w-100"
+          [disabled]="loginForm.invalid || loading"
+        >
+          <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+          {{ loading ? 'Logging in...' : 'Login' }}
+        </button>
+
+        <p class="text-center mt-3">
+          Don't have an account? <a [routerLink]="['/auth/register']">Register here</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
