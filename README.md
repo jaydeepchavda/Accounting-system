@@ -342,3 +342,6 @@ For issues or questions, please refer to the individual README files in backend/
 **Version**: 1.0.0  
 **Last Updated**: 2026  
 **Ready for Production**: With additional testing and deployment configuration
+
+
+This project is focused on devops practical knowledges
